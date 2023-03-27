@@ -1,3 +1,5 @@
+package ru.netology.sender;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -17,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class MessageSenderTest {
+public class MessageSenderImplTest {
 
     @ParameterizedTest
     @MethodSource("setParameters")
@@ -46,23 +48,6 @@ public class MessageSenderTest {
                 Arguments.of("96", "Welcome", Country.USA),
                 Arguments.of("96", "Welcome", Country.GERMANY),
                 Arguments.of("96", "Welcome", Country.BRAZIL));
-    }
-
-    @Test
-    public void byIpTest () {
-        GeoServiceImpl geoService = new GeoServiceImpl();
-//        Mockito.when(GeoServiceMock.byIp("172"))
-//                .thenReturn(new Location(Mockito.anyString(), Country.RUSSIA, null, 0));
-        Location expected = new Location("Moscow", Country.RUSSIA, null, 0);
-        Location actual = geoService.byIp("172.0.");
-        Assertions.assertEquals(expected.getCountry(), actual.getCountry());
-    }
-
-    @Test
-    public void byCoordinatesTest () {
-        GeoServiceImpl geoService = new GeoServiceImpl();
-        Executable ex = () -> geoService.byCoordinates(Mockito.anyDouble(), Mockito.anyDouble());
-        Assertions.assertThrowsExactly(RuntimeException.class, (Executable) ex);
     }
 
 }
